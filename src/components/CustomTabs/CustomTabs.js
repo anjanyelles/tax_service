@@ -11,12 +11,12 @@ import Tab from "@material-ui/core/Tab";
 // core components
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
-import CardHeader from "components/Card/CardHeader.js";  
+import CardHeader from "components/Card/CardHeader.js";
 
 import styles from "assets/jss/material-dashboard-react/components/customTabsStyle.js";
 
 const useStyles = makeStyles(styles);
- 
+
 export default function CustomTabs(props) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, value) => {

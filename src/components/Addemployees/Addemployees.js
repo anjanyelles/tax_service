@@ -96,7 +96,7 @@ export default function Addemployees() {
     // If user selects "employee", fetch managers
     if (name === "userType" && value === "employee") {
       try {
-        const response = await fetch("https://asoft.click/api/incometax-service/auth/allmanagers");
+        const response = await fetch("http://ec2-43-204-235-24.ap-south-1.compute.amazonaws.com:8686/api/incometax-service/auth/allmanagers");
         const data = await response.json();
         setManagers(data); // save manager list for dropdown
       } catch (error) {

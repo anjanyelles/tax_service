@@ -16,7 +16,7 @@ export default function RegularButton(props) {
   const classes = useStyles();
   const {
     color,
-    round,   
+    round,
     children,
     disabled,
     simple,

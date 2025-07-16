@@ -91,7 +91,7 @@ export function getRoutesByRole(userRole) {
           name: "All Leads",
           icon: Event,
           component: GetLeads,
-          layout: "/admin",git
+          layout: "/admin",
         },
         {
           path: "/documents",

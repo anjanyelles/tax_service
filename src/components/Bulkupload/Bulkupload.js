@@ -7,7 +7,7 @@ import {
   Paper,
 } from "@material-ui/core";
 
-// import MuiAlert from "@material-ui/lab/Alert";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import { makeStyles } from "@material-ui/core/styles";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
@@ -42,9 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Alert(props) {
-  return <></>;
-  // return <MuiAlert elevation={6} variant="filled" {...props} />;
-  
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 export default function Bulkupload() {

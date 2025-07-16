@@ -7,13 +7,12 @@ const BASE_URL =
     ? 'https://asoft.click/api/incometax-service/'
     : 'http://ec2-43-204-235-24.ap-south-1.compute.amazonaws.com:8686/api/incometax-service/'
 
-
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-    withCredentials: true
+      withCredentials: true,
 })
 
 
