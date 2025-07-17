@@ -20,8 +20,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "^4.0.3",
     "react-swipeable-views": "^0.14.0",
-    "semver": "^7.7.2",
-    "homepage": "/"
+    "semver": "^7.7.2"
 
   },
   "scripts": {
