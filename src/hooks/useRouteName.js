@@ -1,16 +1,11 @@
-import { getRoutesByRole } from "routes";
+import routes from "routes";
 
 export const useRouteName = () => {
-  const role = sessionStorage.getItem("userRole") || "employee"; 
-  const routes = getRoutesByRole(role);
-  const currentPath = window.location.pathname;
   let name = "";
-
   routes.forEach((route) => {
-    if (currentPath.indexOf(route.layout + route.path) !== -1) {
-      name = route.name;
+    if (window.location.href.indexOf(route.layout + route.path) !== -1) {
+      name = routes.rtlActive ? route.rtlName : route.name;
     }
   });
-
   return name;
 };

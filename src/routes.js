@@ -38,141 +38,132 @@ import DocumentsPage from "views/Documents/Documents.js";
 import ReportsPage from "views/Reports/Reports.js";
 import SettingsPage from "views/Settings/Settings.js";
 import Communication from "views/Communication/Communication";
-import Addemployees from "components/Addemployees/Addemployees";
-import GetLeads from "components/Leads/GetLeads";
-import Bulkupload from "components/Bulkupload/Bulkupload";
-import ManagerEmployeePage from "components/Addemployees/ManagerEmployeePage";
-import GetLeadsManagerView from "components/Leads/GetLeadsManagerView";
-import EmployeeProfile from "views/Employess/EmployeeProfile";
-import GetLeadsEmployeeView from "views/Employess/GetLeadsEmployeeView";
 
+const dashboardRoutes = [
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    rtlName: "لوحة القيادة",
+    icon: Dashboard,
+    component: DashboardPage,
+    layout: "/admin",
+  },
+  // {
+  //   path: "/user",
+  //   name: "User Profile",
+  //   rtlName: "ملف تعريفي للمستخدم",
+  //   icon: Person,
+  //   component: UserProfile,
+  //   layout: "/admin",
+  // },
+  // {
+  //   path: "/table",
+  //   name: "Table List",
+  //   rtlName: "قائمة الجدول",
+  //   icon: "content_paste",
+  //   component: TableList,
+  //   layout: "/admin",
+  // },
+  // {
+  //   path: "/typography",
+  //   name: "Typography",
+  //   rtlName: "طباعة",
+  //   icon: LibraryBooks,
+  //   component: Typography,
+  //   layout: "/admin",
+  // },
+  // {
+  //   path: "/icons",
+  //   name: "Icons",
+  //   rtlName: "الرموز",
+  //   icon: BubbleChart,
+  //   component: Icons,
+  //   layout: "/admin",
+  // },
+  // {
+  //   path: "/maps",
+  //   name: "Maps",
+  //   rtlName: "خرائط",
+  //   icon: LocationOn,
+  //   component: Maps,
+  //   layout: "/admin",
+  // },
+  // {
+  //   path: "/notifications",
+  //   name: "Notifications",
+  //   rtlName: "إخطارات",
+  //   icon: Notifications,
+  //   component: NotificationsPage,
+  //   layout: "/admin",
+  // },
+  // {
+  //   path: "/rtl-page",
+  //   name: "RTL Support",
+  //   rtlName: "پشتیبانی از راست به چپ",
+  //   icon: Language,
+  //   component: RTLPage,
+  //   layout: "/rtl",
+  // },
+  // {
+  //   path: "/upgrade-to-pro",
+  //   name: "Upgrade To PRO",
+  //   rtlName: "التطور للاحترافية",
+  //   icon: Unarchive,
+  //   component: UpgradeToPro,
+  //   layout: "/admin",
+  // },
 
-export function getRoutesByRole(userRole) {
-  switch (userRole) {
-    case "admin":
-      return [
-        {
-          path: "/dashboard",
-          name: "Dashboard",
-          icon: Dashboard,
-          component: DashboardPage,
-          layout: "/admin",
-        },
-        // {
-        //   path: "/leads",
-        //   name: "Lead Management",
-        //   icon: People,
-        //   component: LeadsPage,
-        //   layout: "/admin",
-        // },
-        // {
-        //   path: "/clients",
-        //   name: "Client Information",
-        //   icon: People,
-        //   component: ClientsPage,
-        //   layout: "/admin",
-        // },
-        {
-          path: "/addemployees",
-          name: "Add Employees",
-          icon: Event,
-          component: Addemployees,
-          layout: "/admin",
-        },
-        {
-          path: "/bulkupload",
-          name: "Bulk Upload",
-          icon: Event,
-          component: Bulkupload,
-          layout: "/admin",
-        },
-        {
-          path: "/GetLeads",
-          name: "All Leads",
-          icon: Event,
-          component: GetLeads,
-          layout: "/admin",
-        },
-        {
-          path: "/documents",
-          name: "Documents & Files",
-          icon: Description,
-          component: DocumentsPage,
-          layout: "/admin",
-        },
-        {
-          path: "/reports",
-          name: "Client Portal Access Suggestion",
-          icon: BarChart,
-          component: ReportsPage,
-          layout: "/admin",
-        },
-      ];
+  // --- New menu items added below ---
+  {
+    path: "/leads",
+    name: "Lead Management",
+    icon: People,
+    component: LeadsPage,
+    layout: "/admin",
+  },
+  {
+    path: "/clients",
+    name: "Client Information",
+    icon: People,
+    component: ClientsPage,
+    layout: "/admin",
+  },
+  {
+    path: "/services",
+    name: "Services & Compliance",
+    icon: Build,
+    component: ServicesPage,
+    layout: "/admin",
+  },
+  {
+    path: "/billing",
+    name: "Billing & Payment",
+    icon: Payment,
+    component: BillingPage,
+    layout: "/admin",
+  },
+  {
+    path: "/communication",
+    name: "Communication & Follow",
+    icon: Event,
+    component: Communication,
+    layout: "/admin",
+  },
+  {
+    path: "/documents",
+    name: "Documents & Files",
+    icon: Description,
+    component: DocumentsPage,
+    layout: "/admin",
+  },
+  {
+    path: "/reports",
+    name: "Client Portal Access Suggestion",
+    icon: BarChart,
+    component: ReportsPage,
+    layout: "/admin",
+  },
 
-    case "manager":
-      return [
-        {
-          path: "/dashboard",
-          name: "Dashboard",
-          icon: Dashboard,
-          component: DashboardPage,
-          layout: "/admin",
-        },
+];
 
-        {
-          path: "/team-management",
-          name: "Team Management",
-          icon: People,
-          component: ManagerEmployeePage,
-          layout: "/admin",
-        },
-        {
-          path: "/mnager-leads",
-          name: "Manager Lead Management",
-          icon: People,
-          component: GetLeadsManagerView,
-          layout: "/admin",
-        },
-        // {
-        //   path: "/bulkupload",
-        //   name: "Bulk Upload",
-        //   icon: Event,
-        //   component: Bulkupload,
-        //   layout: "/admin",
-        // },
-        {
-          path: "/documents",
-          name: "Documents & Files",
-          icon: Description,
-          component: DocumentsPage,
-          layout: "/admin",
-        },
-      ];
-
-    case "employee":
-    default:
-      return [
-        {
-          path: "/dashboard",
-          name: "Dashboard",
-          icon: Dashboard,
-          component: DashboardPage,
-          layout: "/admin",
-        },
-        {
-          path: "/employee-profile",
-          name: "Employee Profile",
-          icon: Person,
-          component: EmployeeProfile,
-          layout: "/admin",
-        },
-        {
-          path: "/employee-leads",
-          name: "Employee Leads",
-          icon: People,
-          component: GetLeadsEmployeeView,
-          layout: "/admin",
-        }
-      ];
-  }
-}
+export default dashboardRoutes;
