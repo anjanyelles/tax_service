@@ -14,6 +14,6 @@ function App() {
       </Flowbite>
     </>
   );
-}
+}   
 
 export default App;
