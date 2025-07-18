@@ -1,291 +1,387 @@
-import React from "react";
-// react plugin for creating charts
-import ChartistGraph from "react-chartist";
-// @material-ui/core
-import { makeStyles } from "@material-ui/core/styles";
-import Icon from "@material-ui/core/Icon";
-// @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
-import BugReport from "@material-ui/icons/BugReport";
-import Code from "@material-ui/icons/Code";
-import Cloud from "@material-ui/icons/Cloud";
-// core components
-import GridItem from "components/Grid/GridItem.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import Table from "components/Table/Table.js";
-import Tasks from "components/Tasks/Tasks.js";
-import CustomTabs from "components/CustomTabs/CustomTabs.js";
-import Danger from "components/Typography/Danger.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardIcon from "components/Card/CardIcon.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-
-import { bugs, website, server } from "variables/general.js";
+import React from 'react'
+import classNames from 'classnames'
 
 import {
-  dailySalesChart,
-  emailsSubscriptionChart,
-  completedTasksChart,
-} from "variables/charts.js";
+  CAvatar,
+  CButton,
+  CButtonGroup,
+  CCard,
+  CCardBody,
+  CCardFooter,
+  CCardHeader,
+  CCol,
+  CProgress,
+  CRow,
+  CTable,
+  CTableBody,
+  CTableDataCell,
+  CTableHead,
+  CTableHeaderCell,
+  CTableRow,
+} from '@coreui/react'
+import CIcon from '@coreui/icons-react'
+import {
+  cibCcAmex,
+  cibCcApplePay,
+  cibCcMastercard,
+  cibCcPaypal,
+  cibCcStripe,
+  cibCcVisa,
+  cibGoogle,
+  cibFacebook,
+  cibLinkedin,
+  cifBr,
+  cifEs,
+  cifFr,
+  cifIn,
+  cifPl,
+  cifUs,
+  cibTwitter,
+  cilCloudDownload,
+  cilPeople,
+  cilUser,
+  cilUserFemale,
+} from '@coreui/icons'
 
-import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+import avatar1 from 'src/assets/images/avatars/1.jpg'
+import avatar2 from 'src/assets/images/avatars/2.jpg'
+import avatar3 from 'src/assets/images/avatars/3.jpg'
+import avatar4 from 'src/assets/images/avatars/4.jpg'
+import avatar5 from 'src/assets/images/avatars/5.jpg'
+import avatar6 from 'src/assets/images/avatars/6.jpg'
 
-const useStyles = makeStyles(styles);
+import WidgetsBrand from '../widgets/WidgetsBrand'
+import WidgetsDropdown from '../widgets/WidgetsDropdown'
+import MainChart from './MainChart'
 
-export default function Dashboard() {
-  const classes = useStyles();
+const Dashboard = () => {
+  const progressExample = [
+    { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
+    { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
+    { title: 'Pageviews', value: '78.706 Views', percent: 60, color: 'warning' },
+    { title: 'New Users', value: '22.123 Users', percent: 80, color: 'danger' },
+    { title: 'Bounce Rate', value: 'Average Rate', percent: 40.15, color: 'primary' },
+  ]
+
+  const progressGroupExample1 = [
+    { title: 'Monday', value1: 34, value2: 78 },
+    { title: 'Tuesday', value1: 56, value2: 94 },
+    { title: 'Wednesday', value1: 12, value2: 67 },
+    { title: 'Thursday', value1: 43, value2: 91 },
+    { title: 'Friday', value1: 22, value2: 73 },
+    { title: 'Saturday', value1: 53, value2: 82 },
+    { title: 'Sunday', value1: 9, value2: 69 },
+  ]
+
+  const progressGroupExample2 = [
+    { title: 'Male', icon: cilUser, value: 53 },
+    { title: 'Female', icon: cilUserFemale, value: 43 },
+  ]
+
+  const progressGroupExample3 = [
+    { title: 'Organic Search', icon: cibGoogle, percent: 56, value: '191,235' },
+    { title: 'Facebook', icon: cibFacebook, percent: 15, value: '51,223' },
+    { title: 'Twitter', icon: cibTwitter, percent: 11, value: '37,564' },
+    { title: 'LinkedIn', icon: cibLinkedin, percent: 8, value: '27,319' },
+  ]
+
+  const tableExample = [
+    {
+      avatar: { src: avatar1, status: 'success' },
+      user: {
+        name: 'Yiorgos Avraamu',
+        new: true,
+        registered: 'Jan 1, 2023',
+      },
+      country: { name: 'USA', flag: cifUs },
+      usage: {
+        value: 50,
+        period: 'Jun 11, 2023 - Jul 10, 2023',
+        color: 'success',
+      },
+      payment: { name: 'Mastercard', icon: cibCcMastercard },
+      activity: '10 sec ago',
+    },
+    {
+      avatar: { src: avatar2, status: 'danger' },
+      user: {
+        name: 'Avram Tarasios',
+        new: false,
+        registered: 'Jan 1, 2023',
+      },
+      country: { name: 'Brazil', flag: cifBr },
+      usage: {
+        value: 22,
+        period: 'Jun 11, 2023 - Jul 10, 2023',
+        color: 'info',
+      },
+      payment: { name: 'Visa', icon: cibCcVisa },
+      activity: '5 minutes ago',
+    },
+    {
+      avatar: { src: avatar3, status: 'warning' },
+      user: { name: 'Quintin Ed', new: true, registered: 'Jan 1, 2023' },
+      country: { name: 'India', flag: cifIn },
+      usage: {
+        value: 74,
+        period: 'Jun 11, 2023 - Jul 10, 2023',
+        color: 'warning',
+      },
+      payment: { name: 'Stripe', icon: cibCcStripe },
+      activity: '1 hour ago',
+    },
+    {
+      avatar: { src: avatar4, status: 'secondary' },
+      user: { name: 'Enéas Kwadwo', new: true, registered: 'Jan 1, 2023' },
+      country: { name: 'France', flag: cifFr },
+      usage: {
+        value: 98,
+        period: 'Jun 11, 2023 - Jul 10, 2023',
+        color: 'danger',
+      },
+      payment: { name: 'PayPal', icon: cibCcPaypal },
+      activity: 'Last month',
+    },
+    {
+      avatar: { src: avatar5, status: 'success' },
+      user: {
+        name: 'Agapetus Tadeáš',
+        new: true,
+        registered: 'Jan 1, 2023',
+      },
+      country: { name: 'Spain', flag: cifEs },
+      usage: {
+        value: 22,
+        period: 'Jun 11, 2023 - Jul 10, 2023',
+        color: 'primary',
+      },
+      payment: { name: 'Google Wallet', icon: cibCcApplePay },
+      activity: 'Last week',
+    },
+    {
+      avatar: { src: avatar6, status: 'danger' },
+      user: {
+        name: 'Friderik Dávid',
+        new: true,
+        registered: 'Jan 1, 2023',
+      },
+      country: { name: 'Poland', flag: cifPl },
+      usage: {
+        value: 43,
+        period: 'Jun 11, 2023 - Jul 10, 2023',
+        color: 'success',
+      },
+      payment: { name: 'Amex', icon: cibCcAmex },
+      activity: 'Last week',
+    },
+  ]
+
   return (
-    <div>
-    <GridContainer>
-  <GridItem xs={12} sm={6} md={3}>
-    <Card>
-      <CardHeader color="warning" stats icon>
-        <CardIcon color="warning">
-          <Icon>content_copy</Icon>
-        </CardIcon>
-        <p className={classes.cardCategory}>New Leads</p>
-        <h3 className={classes.cardTitle}>48</h3>
-      </CardHeader>
-      <CardFooter stats>
-        <div className={classes.stats}>
-          <Danger>
-            <Warning />
-          </Danger>
-          <a href="#pablo" onClick={(e) => e.preventDefault()}>
-            View Details
-          </a>
-        </div>
-      </CardFooter>
-    </Card>
-  </GridItem>
+    <>
+      <WidgetsDropdown className="mb-4" />
+      <CCard className="mb-4">
+        <CCardBody>
+          <CRow>
+            <CCol sm={5}>
+              <h4 id="traffic" className="card-title mb-0">
+                Traffic
+              </h4>
+              <div className="small text-body-secondary">January - July 2023</div>
+            </CCol>
+            <CCol sm={7} className="d-none d-md-block">
+              <CButton color="primary" className="float-end">
+                <CIcon icon={cilCloudDownload} />
+              </CButton>
+              <CButtonGroup className="float-end me-3">
+                {['Day', 'Month', 'Year'].map((value) => (
+                  <CButton
+                    color="outline-secondary"
+                    key={value}
+                    className="mx-0"
+                    active={value === 'Month'}
+                  >
+                    {value}
+                  </CButton>
+                ))}
+              </CButtonGroup>
+            </CCol>
+          </CRow>
+          <MainChart />
+        </CCardBody>
+        <CCardFooter>
+          <CRow
+            xs={{ cols: 1, gutter: 4 }}
+            sm={{ cols: 2 }}
+            lg={{ cols: 4 }}
+            xl={{ cols: 5 }}
+            className="mb-2 text-center"
+          >
+            {progressExample.map((item, index, items) => (
+              <CCol
+                className={classNames({
+                  'd-none d-xl-block': index + 1 === items.length,
+                })}
+                key={index}
+              >
+                <div className="text-body-secondary">{item.title}</div>
+                <div className="fw-semibold text-truncate">
+                  {item.value} ({item.percent}%)
+                </div>
+                <CProgress thin className="mt-2" color={item.color} value={item.percent} />
+              </CCol>
+            ))}
+          </CRow>
+        </CCardFooter>
+      </CCard>
+      <WidgetsBrand className="mb-4" withCharts />
+      <CRow>
+        <CCol xs>
+          <CCard className="mb-4">
+            <CCardHeader>Traffic {' & '} Sales</CCardHeader>
+            <CCardBody>
+              <CRow>
+                <CCol xs={12} md={6} xl={6}>
+                  <CRow>
+                    <CCol xs={6}>
+                      <div className="border-start border-start-4 border-start-info py-1 px-3">
+                        <div className="text-body-secondary text-truncate small">New Clients</div>
+                        <div className="fs-5 fw-semibold">9,123</div>
+                      </div>
+                    </CCol>
+                    <CCol xs={6}>
+                      <div className="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
+                        <div className="text-body-secondary text-truncate small">
+                          Recurring Clients
+                        </div>
+                        <div className="fs-5 fw-semibold">22,643</div>
+                      </div>
+                    </CCol>
+                  </CRow>
+                  <hr className="mt-0" />
+                  {progressGroupExample1.map((item, index) => (
+                    <div className="progress-group mb-4" key={index}>
+                      <div className="progress-group-prepend">
+                        <span className="text-body-secondary small">{item.title}</span>
+                      </div>
+                      <div className="progress-group-bars">
+                        <CProgress thin color="info" value={item.value1} />
+                        <CProgress thin color="danger" value={item.value2} />
+                      </div>
+                    </div>
+                  ))}
+                </CCol>
+                <CCol xs={12} md={6} xl={6}>
+                  <CRow>
+                    <CCol xs={6}>
+                      <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
+                        <div className="text-body-secondary text-truncate small">Pageviews</div>
+                        <div className="fs-5 fw-semibold">78,623</div>
+                      </div>
+                    </CCol>
+                    <CCol xs={6}>
+                      <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
+                        <div className="text-body-secondary text-truncate small">Organic</div>
+                        <div className="fs-5 fw-semibold">49,123</div>
+                      </div>
+                    </CCol>
+                  </CRow>
 
-  <GridItem xs={12} sm={6} md={3}>
-    <Card>
-      <CardHeader color="success" stats icon>
-        <CardIcon color="success">
-          <Store />
-        </CardIcon>
-        <p className={classes.cardCategory}>Converted Clients</p>
-        <h3 className={classes.cardTitle}>32</h3>
-      </CardHeader>
-      <CardFooter stats>
-        <div className={classes.stats}>
-          <DateRange />
-          This Month
-        </div>
-      </CardFooter>
-    </Card>
-  </GridItem>
+                  <hr className="mt-0" />
 
-  <GridItem xs={12} sm={6} md={3}>
-    <Card>
-      <CardHeader color="danger" stats icon>
-        <CardIcon color="danger">
-          <Icon>info_outline</Icon>
-        </CardIcon>
-        <p className={classes.cardCategory}>Pending Services</p>
-        <h3 className={classes.cardTitle}>15</h3>
-      </CardHeader>
-      <CardFooter stats>
-        <div className={classes.stats}>
-          <LocalOffer />
-          In Progress
-        </div>
-      </CardFooter>
-    </Card>
-  </GridItem>
+                  {progressGroupExample2.map((item, index) => (
+                    <div className="progress-group mb-4" key={index}>
+                      <div className="progress-group-header">
+                        <CIcon className="me-2" icon={item.icon} size="lg" />
+                        <span>{item.title}</span>
+                        <span className="ms-auto fw-semibold">{item.value}%</span>
+                      </div>
+                      <div className="progress-group-bars">
+                        <CProgress thin color="warning" value={item.value} />
+                      </div>
+                    </div>
+                  ))}
 
-  <GridItem xs={12} sm={6} md={3}>
-    <Card>
-      <CardHeader color="info" stats icon>
-        <CardIcon color="info">
-          <Accessibility />
-        </CardIcon>
-        <p className={classes.cardCategory}>Outstanding Amount</p>
-        <h3 className={classes.cardTitle}>₹1.2L</h3>
-      </CardHeader>
-      <CardFooter stats>
-        <div className={classes.stats}>
-          <Update />
-          Last Updated Today
-        </div>
-      </CardFooter>
-    </Card>
-  </GridItem>
-</GridContainer>
+                  <div className="mb-5"></div>
 
-      <GridContainer>
-        <GridItem xs={12} sm={12} md={4}>
-          <Card chart>
-            <CardHeader color="success">
-              <ChartistGraph
-                className="ct-chart"
-                data={dailySalesChart.data}
-                type="Line"
-                options={dailySalesChart.options}
-                listener={dailySalesChart.animation}
-              />
-            </CardHeader>
-            <CardBody>
-              <h4 className={classes.cardTitle}>Daily Sales</h4>
-              <p className={classes.cardCategory}>
-                <span className={classes.successText}>
-                  <ArrowUpward className={classes.upArrowCardCategory} /> 55%
-                </span>{" "}
-                increase in today sales.
-              </p>
-            </CardBody>
-            <CardFooter chart>
-              <div className={classes.stats}>
-                <AccessTime /> updated 4 minutes ago
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={12} md={4}>
-          <Card chart>
-            <CardHeader color="warning">
-              <ChartistGraph
-                className="ct-chart"
-                data={emailsSubscriptionChart.data}
-                type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
-              />
-            </CardHeader>
-            <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
-            </CardBody>
-            <CardFooter chart>
-              <div className={classes.stats}>
-                <AccessTime /> campaign sent 2 days ago
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={12} md={4}>
-          <Card chart>
-            <CardHeader color="danger">
-              <ChartistGraph
-                className="ct-chart"
-                data={completedTasksChart.data}
-                type="Line"
-                options={completedTasksChart.options}
-                listener={completedTasksChart.animation}
-              />
-            </CardHeader>
-            <CardBody>
-              <h4 className={classes.cardTitle}>Completed Tasks</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
-            </CardBody>
-            <CardFooter chart>
-              <div className={classes.stats}>
-                <AccessTime /> campaign sent 2 days ago
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-      </GridContainer>
-      <GridContainer>
-        <GridItem xs={12} sm={12} md={6}>
-          <CustomTabs
-            title="Tasks:"
-            headerColor="primary"
-            tabs={[
-              {
-                tabName: "Bugs",
-                tabIcon: BugReport,
-                tabContent: (
-                  <Tasks
-                    checkedIndexes={[0, 3]}
-                    tasksIndexes={[0, 1, 2, 3]}
-                    tasks={bugs}
-                  />
-                ),
-              },
-              {
-                tabName: "Website",
-                tabIcon: Code,
-                tabContent: (
-                  <Tasks
-                    checkedIndexes={[0]}
-                    tasksIndexes={[0, 1]}
-                    tasks={website}
-                  />
-                ),
-              },
-              {
-                tabName: "Server",
-                tabIcon: Cloud,
-                tabContent: (
-                  <Tasks
-                    checkedIndexes={[1]}
-                    tasksIndexes={[0, 1, 2]}
-                    tasks={server}
-                  />
-                ),
-              },
-            ]}
-          />
-        </GridItem>
-        {/* <GridItem xs={12} sm={12} md={6}>
-          <Card>
-            <CardHeader color="warning">
-              <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
-              <p className={classes.cardCategoryWhite}>
-                New employees on 15th September, 2016
-              </p>
-            </CardHeader>
-            <CardBody>
-              <Table
-                tableHeaderColor="warning"
-                tableHead={["ID", "Name", "Salary", "Country"]}
-                tableData={[
-                  ["1", "Dakota Rice", "$36,738", "Niger"],
-                  ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                  ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                  ["4", "Philip Chaney", "$38,735", "Korea, South"],
-                ]}
-              />
-            </CardBody>
-          </Card>
-        </GridItem> */}
-        <GridItem xs={12} sm={12} md={12}>
-  <Card>
-    <CardHeader color="warning">
-      <h4 className={classes.cardTitleWhite}>Lead Details</h4>
-      <p className={classes.cardCategoryWhite}>
-        All leads updated as of 15th May, 2025
-      </p>
-    </CardHeader>
-    <CardBody>
-      <Table
-        tableHeaderColor="warning"
-        tableHead={["Lead Name", "Contact", "Service", "Source", "Assigned To", "Status", "Created"]}
-        tableData={[
-          ["Rohit Sharma", "9876543210", "Income Tax Filing", "Website", "Caller 1", "New", "15/05/2025"],
-          ["Priya Patel", "8765432109", "GST Filing", "Referral", "Caller 2", "Contacted", "12/05/2025"],
-          ["Aditya Singh", "7654321098", "TDS Return", "Walk-in", "Caller 3", "Follow-up", "10/05/2025"],
-          ["Neha Gupta", "6543210987", "PF/ESI", "Website", "Caller 4", "Converted", "08/05/2025"],
-          ["Vikram Malhotra", "5432109876", "Income Tax Filing", "Referral", "Caller 1", "Dropped", "05/05/2025"],
-        ]}
-      />
-    </CardBody>
-  </Card>
-</GridItem>
+                  {progressGroupExample3.map((item, index) => (
+                    <div className="progress-group" key={index}>
+                      <div className="progress-group-header">
+                        <CIcon className="me-2" icon={item.icon} size="lg" />
+                        <span>{item.title}</span>
+                        <span className="ms-auto fw-semibold">
+                          {item.value}{' '}
+                          <span className="text-body-secondary small">({item.percent}%)</span>
+                        </span>
+                      </div>
+                      <div className="progress-group-bars">
+                        <CProgress thin color="success" value={item.percent} />
+                      </div>
+                    </div>
+                  ))}
+                </CCol>
+              </CRow>
 
-      </GridContainer>
-    </div>
-  );
+              <br />
+
+              <CTable align="middle" className="mb-0 border" hover responsive>
+                <CTableHead className="text-nowrap">
+                  <CTableRow>
+                    <CTableHeaderCell className="bg-body-tertiary text-center">
+                      <CIcon icon={cilPeople} />
+                    </CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">User</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary text-center">
+                      Country
+                    </CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Usage</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary text-center">
+                      Payment Method
+                    </CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Activity</CTableHeaderCell>
+                  </CTableRow>
+                </CTableHead>
+                <CTableBody>
+                  {tableExample.map((item, index) => (
+                    <CTableRow v-for="item in tableItems" key={index}>
+                      <CTableDataCell className="text-center">
+                        <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
+                      </CTableDataCell>
+                      <CTableDataCell>
+                        <div>{item.user.name}</div>
+                        <div className="small text-body-secondary text-nowrap">
+                          <span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '}
+                          {item.user.registered}
+                        </div>
+                      </CTableDataCell>
+                      <CTableDataCell className="text-center">
+                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
+                      </CTableDataCell>
+                      <CTableDataCell>
+                        <div className="d-flex justify-content-between text-nowrap">
+                          <div className="fw-semibold">{item.usage.value}%</div>
+                          <div className="ms-3">
+                            <small className="text-body-secondary">{item.usage.period}</small>
+                          </div>
+                        </div>
+                        <CProgress thin color={item.usage.color} value={item.usage.value} />
+                      </CTableDataCell>
+                      <CTableDataCell className="text-center">
+                        <CIcon size="xl" icon={item.payment.icon} />
+                      </CTableDataCell>
+                      <CTableDataCell>
+                        <div className="small text-body-secondary text-nowrap">Last login</div>
+                        <div className="fw-semibold text-nowrap">{item.activity}</div>
+                      </CTableDataCell>
+                    </CTableRow>
+                  ))}
+                </CTableBody>
+              </CTable>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
+    </>
+  )
 }
+
+export default Dashboard
